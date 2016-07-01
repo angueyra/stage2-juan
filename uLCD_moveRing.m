@@ -1,10 +1,7 @@
 function uLCD_moveRing(idLCD,stX,stY,fX,fY,rInner,rOuter,frames)
 % function uLCD_moveRing(idLCD,stX,stY,fX,fY,rInner,rOuter,speed)
 % clear Screen
-% fwrite(idLCD,hex2dec('FF'));
-% fwrite(idLCD,hex2dec('82'));
-
-fwrite(idLCD,[255,82]);
+fwrite(idLCD,[255,130]);
 
 deltaX=abs(stX-fX)/frames;
 deltaY=abs(stY-fY)/frames;

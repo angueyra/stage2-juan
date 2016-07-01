@@ -6,6 +6,7 @@ function StageuLCD(canvas)
             canvas.clear();
             sprintf('reached frame 100')
             toc
+            
         end
         canvas.window.flip();
         frame = frame + 1;
