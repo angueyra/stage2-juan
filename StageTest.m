@@ -8,28 +8,27 @@ rect.color = [1 0 1];
 rect.size = [200, 100];
 rect.position = [640, 480]./2;
 
-% spotVisible = stage.builtin.controllers.PropertyController(rect, 'visible', ...
-%     @(state)state.time >= .1 && state.time < .8 );
-spotColor = stage.builtin.controllers.PropertyController(rect, 'orientation', ...
-    @uLCDStageCommand);
+spotVisible = stage.builtin.controllers.PropertyController(rect, 'visible', ...
+    @(state)state.time >= .1 && state.time < .8 );
 
 
 presentation = stage.core.Presentation(1);
 presentation.addStimulus(rect);
-% presentation.addController(spotVisible);
-presentation.addController(spotColor);
+presentation.addController(spotVisible);
 %
 % Play the presentation on the canvas!
 presentation.play(canvas);
 
 %%
 u=squirrellab.devices.uLCD;
+u.connect;
+%%
 uLCDStim=uLCDStimulus();
 uLCDStim.uLCD=u;
 
 uLCDCMD = stage.builtin.controllers.PropertyController(uLCDStim, 'cmdCount', @uLCDStageCommand);
 
-
+%%
 
 presentation = stage.core.Presentation(1);
 presentation.addStimulus(uLCDStim);
