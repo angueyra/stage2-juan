@@ -1,14 +1,14 @@
 % Define a window of size 640x480, non-fullscreen
-window = stage.core.Window([640, 480], false);
+window = stage.core.Window([320, 240], false);
 canvas = stage.core.Canvas(window);
 %%
-u=squirrellab.devices.uLCD;
+u=squirrellab.devices.uLCDObj('COM9');
 u.connect;
 %%
-uLCDStim=uLCDStimulus();
+uLCDStim=squirrellab.stimuli.uLCDStimulus();
 uLCDStim.uLCD=u;
 
-uLCDCMD = stage.builtin.controllers.PropertyController(uLCDStim, 'cmdCount', @uLCDStageCommand);
+uLCDCMD = stage.builtin.controllers.PropertyController(uLCDStim, 'cmdCount', @squirrellab.stage2.uLCDCenterSurroundController);
 
 %%
 
@@ -30,8 +30,8 @@ disp(uLCDStim.cmdCount);
 % From single spot
 rect = stage.builtin.stimuli.Rectangle();
 rect.color = [1 0 1];
-rect.size = [200, 100];
-rect.position = [640, 480]./2;
+rect.size = [150, 75];
+rect.position = [320, 240]./2;
 
 spotVisible = stage.builtin.controllers.PropertyController(rect, 'visible', ...
     @(state)state.time >= .1 && state.time < .8 );
