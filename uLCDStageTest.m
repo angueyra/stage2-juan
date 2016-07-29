@@ -1,5 +1,5 @@
 % Define a window of size 640x480, non-fullscreen
-window = stage.core.Window([320, 240], false);
+window = stage.core.Window([220, 220], false);
 canvas = stage.core.Canvas(window);
 %%
 u=squirrellab.devices.uLCDObj('COM9');
@@ -49,13 +49,13 @@ presentation.play(canvas);
 %%
 % Create the 200x200 square stimulus at the center of the canvas
 square = stage.builtin.stimuli.Rectangle();
-square.position = [320, 240];
-square.size = [200, 200];
+square.position = [110, 110];
+square.size = [50, 50];
 % Create a controller to change the square's orientation property as a function of time.
 orientationController = stage.builtin.controllers.PropertyController(square, 'orientation', ...
     @(state)state.time * 180);
 % Create a 5 second presentation.
-presentation = stage.core.Presentation(.5);
+presentation = stage.core.Presentation(2);
 presentation.addStimulus(square);
 presentation.addController(orientationController);
 %
