@@ -2,7 +2,8 @@
 window = stage.core.Window([220, 220], false);
 canvas = stage.core.Canvas(window);
 %%
-u=squirrellab.devices.uLCDObj('COM9');
+u=squirrellab.devices.uLCDObj('/dev/cu.SLAB_USBtoUART');
+% u=squirrellab.devices.uLCDObj('COM9');
 u.connect;
 %%
 uLCDStim=squirrellab.stimuli.uLCDStimulus();

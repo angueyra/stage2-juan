@@ -2,7 +2,7 @@ function movingSpot()
     import stage.core.*;
 
     % Open a window in windowed-mode and create a canvas. 'disableDwm' = false for demo only!
-    window = Window([640, 480], false);
+    window = Window([640, 480], true);
     canvas = Canvas(window, 'disableDwm', false);
 
     % Create the spot stimulus.
