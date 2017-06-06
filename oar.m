@@ -4,32 +4,32 @@ classdef oar < handle
     
     properties
         canvasSize
-        rectangle
+        rectangle = stage.builtin.stimuli.Rectangle();
         rotationFreq = 1 % in cycles per second (Hz^-1)
         rotationController
-        orientationIni = 0
-        orientationCurr
+        orientation = 0
+    end
+    
+    properties (Dependent)
+        dps % degrees per second for rotation
     end
     
     methods
         function self = oar(canvasSize)
             self.canvasSize = canvasSize;
-            self.rectangle = stage.builtin.stimuli.Rectangle();
             self.rectangle.color = [1 1 1];
             self.rectangle.position = canvasSize/2;
             self.rectangle.size = [canvasSize(1)*2 canvasSize(2)/10];
-            self.rectangle.orientation = self.orientationIni;
-            self.orientationCurr = self.orientationIni;
-%             self.rotationController = stage.builtin.controllers.PropertyController(self.rectangle,'orientation',...
-%                 @(state)(state.time-floor(state.time))* 360 * self.rotationFreq); %
+            self.rectangle.orientation = self.orientation;
             
             self.rotationController = stage.builtin.controllers.PropertyController(self.rectangle,'orientation',...
-                @(state)(state.time * 360 * self.rotationFreq) + self.orientationIni); %
+                @(state)(state.time * self.dps) + self.orientation); %
         end
         
-        function setOrientation(self, orientation)
-            
+        function dps = get.dps(self)
+            dps = 360 * self.rotationFreq;
         end
+        
     end
 
     
